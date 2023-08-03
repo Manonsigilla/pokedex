@@ -20,3 +20,5 @@
 
 * L'application doit avoir une interface permettant à l'utilisateur d'ajouter un nouveau Pokemon à la liste.
 * L'utilisateur doit être en mesure d'entrer le nom du Pokemon, son type, ses capacités, etc.
+
+test
