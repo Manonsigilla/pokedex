@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
+from tkinter import messagebox
 
 fenetre = tk.Tk()
 fenetre.title("Pokedex v0.1")
@@ -58,12 +59,6 @@ pokemon_stats_total.grid(row=6, column=0)
 
 bouton_frame = tk.Frame(fenetre, bg="white", borderwidth=5, relief="raised")
 bouton_frame.grid(row=3, column=0)
-
-left_bouton = tk.Button(bouton_frame, text="Back", command=lambda:afficher_pokemon(move = 'backward'), font = ("Garamond 16"))
-left_bouton.grid(row=0, column=0)
-
-right_bouton = tk.Button(bouton_frame, text="Next", command=lambda:afficher_pokemon(move = 'forward'), font = ("Garamond 16"))
-right_bouton.grid(row=0, column=1)
 
 # Search frame
 
@@ -148,55 +143,51 @@ add_label_total.grid(row=10, column=0)
 add_label_total1 = tk.Label(add_frame, text="Enter the total", bg="white", fg="black")
 add_label_total1.grid(row=10, column=1)
 
-add_bouton = tk.Button(add_frame, text = "Add the pokemon", font = ("Garamond 12"))
-add_bouton.grid(row=11, column=0, columnspan=2)
-
-
 pokedex = [
     {
-        "Name": "Bulbasaur",
+        "Name": "bulbasaur",
         "Stats": {'HP': 45, 'Attack': 49, 'Defense': 49, 'Sp. Attack': 65, 'Sp. Defense': 65, 'Speed': 45, 'Total': 318},
         "Type": ['Grass', 'Poison'],
         "National Number": '0001',
         "Image": ['Images/bulbizar.png', '#49B0D0']
     },
     {
-        "Name": "Pikachu",
+        "Name": "pikachu",
         "Stats": {'HP': 35, 'Attack': 55, 'Defense': 40, 'Sp. Attack': 50, 'Sp. Defense': 50, 'Speed': 90, 'Total': 320},
         "Type": ['Electric'],
         "National Number": '0025',
         "Image": ['Images/pikachu.png', '#FFF135']
     },
     {
-        "Name": "Charmander",
+        "Name": "charmander",
         "Stats": {'HP': 39, 'Attack': 52, 'Defense': 43, 'Sp. Attack': 60, 'Sp. Defense': 50, 'Speed': 65, 'Total': 309},
         "Type": ['Fire'],
         "National Number": '0004',
         "Image": ['Images/salameche.png', '#ED8A8B']
     },
     {
-        "Name": "Psyduck",
+        "Name": "psyduck",
         "Stats": {'HP': 50, 'Attack': 52, 'Defense': 48, 'Sp. Attack': 65, 'Sp. Defense': 50, 'Speed': 55, 'Total': 320},
         "Type": ['Water'],
         "National Number": '0054',
         "Image": ['Images/psykokwak.png', '#A9A9A9']
     },
     {
-        "Name": "Jigglypuff",
+        "Name": "jigglypuff",
         "Stats": {'HP': 115, 'Attack': 45, 'Defense': 20, 'Sp. Attack': 45, 'Sp. Defense': 25, 'Speed': 20, 'Total': 270},
         "Type": ['Normal', 'Fairy'],
         "National Number": '0039',
         "Image": ['Images/Rondoudou.png', '#E6E6FA']
     },
     {
-        "Name": "Meowth",
+        "Name": "meowth",
         "Stats": {'HP': 40, 'Attack': 45, 'Defense': 35, 'Sp. Attack': 40, 'Sp. Defense': 40, 'Speed': 90, 'Total': 290},
         "Type": ['Normal'],
         "National Number": '0052',
         "Image": ['Images/miaouss.png', '#E6E6E6']
     },
     {
-        "Name": "Snorlax",
+        "Name": "snorlax",
         "Stats": {'HP': 160, 'Attack': 110, 'Defense': 65, 'Sp. Attack': 65, 'Sp. Defense': 110, 'Speed': 30, 'Total': 540},
         "Type": ['Normal'],
         "National Number": '0143',
@@ -212,20 +203,28 @@ name_to_search = add_label_name.get().lower()
 number_to_search = add_label_number.get().lower()
 
 def afficher_pokemon(i, move = None):
-    i = int(i)
-    global pokemon_image, name_to_search, number_to_search
+    print(i)
+    global pokemon_image
+    # , name_to_search, number_to_search
 
-    if name_to_search:
-        for index, pokemon in enumerate(pokedex):
-            if pokemon["Name"].lower() == name_to_search:
-                i = index
-                break
+    # if name_to_search:
+    #     for index, pokemon in enumerate(pokedex):
+    #         if pokemon["Name"].lower() == name_to_search:
+    #             i = index
+    #             break
     
-    if number_to_search:
-        for index, pokemon in enumerate(pokedex):
-            if pokemon["National Number"] == number_to_search:
-                i = index
-                break
+    # if number_to_search:
+    #     for index, pokemon in enumerate(pokedex):
+    #         if pokemon["National Number"] == number_to_search:
+    #             i = index
+    #             break
+    # else:
+    #     i = 0
+
+    # if move == 'forward':
+    #     i = (i + 1) % len(pokedex)
+    # elif move == 'backward':
+    #     i = (i - 1) % len(pokedex)
 
     pokemon_image_frame['bg'] = pokedex[i]['Image'][1]
     pokemon_name.config(text=pokedex[i]["Name"])
@@ -259,7 +258,6 @@ def afficher_pokemon(i, move = None):
     pokemon_stats_total['text'] = pokedex[i]['Stats']['Total']
 
     # récupération de la liste des pokemons
-    # pokelist = list(pokedex.keys()
     pokelist = [value for value in pokedex[0].items()]
 
     if move == 'forward':
@@ -275,35 +273,77 @@ def afficher_pokemon(i, move = None):
         except IndexError:
             i = pokelist[len(pokedex) - 1] #si erreur c'est que retour à celui d'avant
 
+    left_bouton = tk.Button(bouton_frame, text="Back", command=lambda:afficher_pokemon(i, move = 'backward'), font = ("Garamond 16"))
+    left_bouton.grid(row=0, column=0)
+
+    right_bouton = tk.Button(bouton_frame, text="Next", command=lambda:afficher_pokemon(i, move = 'forward'), font = ("Garamond 16"))
+    right_bouton.grid(row=0, column=1)
+
 def search_by_name():
     global name_to_search
-    name = search_label1.get().lower()
-    name_to_search = name  
+    name_to_search = search_label1.get().lower()
+    # name_to_search = name  
     
     for i, pokemon in enumerate(pokedex):
-        if pokemon["Name"].lower() == name:
+        if pokemon["Name"].lower() == name_to_search:
             afficher_pokemon(i)
             return
         
-    print("Add the pokemon to the list!")
+    messagebox.showinfo("Error", "The pokemon is not in the list! Add the pokemon to the list!")
 
     
 def search_by_number():
     global number_to_search
-    number = search_label2.get().lower()
-    number_to_search = number
+    number_to_search = search_label2.get()
+    # number_to_search = number
 
     for i, pokemon in enumerate(pokedex):
-        if pokemon["National Number"] == number:
+        if pokemon["National Number"] == number_to_search:
             afficher_pokemon(i)
             return
-    print("Add the pokemon to the list!")
+    messagebox.showinfo("Error", "The pokemon is not in the list! Add the pokemon to the list!")
 
 recherche_bouton1 = tk.Button(search_frame, text = "Search by name", font = ("Helvetica 12"), command=search_by_name)
 recherche_bouton1.grid(row=1, column=1)
 
 recherche_bouton2 = tk.Button(search_frame, text = "Search by number", font=("Helvetica 12"), command=search_by_number)
 recherche_bouton2.grid(row=2, column=1)
-    
-afficher_pokemon(0)
+
+def add_pokemon():
+    global pokedex
+    new_pokemon = {
+        "Name": add_label_name.get(),
+        "Stats": {
+            'HP': int(add_label_hp.get()),
+            'Attack': int(add_label_attack.get()),
+            'Defense': int(add_label_defense.get()),
+            'Sp. Attack': int(add_label_spattack.get()),
+            'Sp. Defense': int(add_label_spdefense.get()),
+            'Speed': int(add_label_speed.get()),
+            'Total': int(add_label_total.get())
+        },
+        "Type": [add_label_type.get()],
+        "National Number": add_label_number.get(),
+        "Image": ['Images/placeholder.png', '#FFFFFF']
+    }
+
+    # add a new pokemon
+    pokedex.append(new_pokemon)
+    messagebox.showinfo("Success", "The pokemon has been added!")
+
+    add_label_name.delete(0, "end")
+    add_label_number.delete(0, "end")
+    add_label_type.delete(0, "end")
+    add_label_hp.delete(0, "end")
+    add_label_attack.delete(0, "end")
+    add_label_defense.delete(0, "end")
+    add_label_spattack.delete(0, "end")
+    add_label_spdefense.delete(0, "end")
+    add_label_speed.delete(0, "end")
+    add_label_total.delete(0, "end")
+
+add_bouton = tk.Button(add_frame, text = "Add the pokemon", font = ("Garamond 12"), command=add_pokemon)
+add_bouton.grid(row=11, column=0, columnspan=2)
+
+afficher_pokemon(len(pokedex) - 1)
 fenetre.mainloop()
