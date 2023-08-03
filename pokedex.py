@@ -60,6 +60,13 @@ pokemon_stats_total.grid(row=6, column=0)
 bouton_frame = tk.Frame(fenetre, bg="white", borderwidth=5, relief="raised")
 bouton_frame.grid(row=3, column=0)
 
+def create_buttons(i):
+    left_bouton = tk.Button(bouton_frame, text="Back", command=lambda:afficher_pokemon(i - 1), font = ("Garamond 16"))
+    left_bouton.grid(row=0, column=0)
+
+    right_bouton = tk.Button(bouton_frame, text="Next", command=lambda:afficher_pokemon(i + 1), font = ("Garamond 16"))
+    right_bouton.grid(row=0, column=1)
+
 # Search frame
 
 search_frame = tk.Frame(fenetre, bg="red", borderwidth=5, relief="raised")
@@ -257,6 +264,8 @@ def afficher_pokemon(i, move = None):
     pokemon_stats_speed['text'] = pokedex[i]['Stats']['Speed']
     pokemon_stats_total['text'] = pokedex[i]['Stats']['Total']
 
+    i = max(0, min(i, len(pokedex) - 1))
+
     # récupération de la liste des pokemons
     pokelist = [value for value in pokedex[0].items()]
 
@@ -272,12 +281,7 @@ def afficher_pokemon(i, move = None):
             afficher_pokemon(i)
         except IndexError:
             i = pokelist[len(pokedex) - 1] #si erreur c'est que retour à celui d'avant
-
-    left_bouton = tk.Button(bouton_frame, text="Back", command=lambda:afficher_pokemon(i, move = 'backward'), font = ("Garamond 16"))
-    left_bouton.grid(row=0, column=0)
-
-    right_bouton = tk.Button(bouton_frame, text="Next", command=lambda:afficher_pokemon(i, move = 'forward'), font = ("Garamond 16"))
-    right_bouton.grid(row=0, column=1)
+    create_buttons(i)
 
 def search_by_name():
     global name_to_search
