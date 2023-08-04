@@ -95,7 +95,8 @@ search_label2.bind("<FocusIn>", temp_text)
 # Add pokemon frame
 
 add_frame = tk.Frame(fenetre, bg="#e60000", borderwidth=4, relief="sunken")
-add_frame.grid(row=1, column=2)
+add_frame.config(height=1000)
+add_frame.grid(row=1, column=2, rowspan=3)
 
 add_label = tk.Label(add_frame, text="Add a Pokemon", bg="white", font = ("Garamond 14 bold"))
 add_label.grid(row=0, column=0, columnspan=2)
@@ -271,16 +272,20 @@ def afficher_pokemon(i, move = None):
 
     if move == 'forward':
         try:
-            i = pokedex[i + 1]["Name"] if i + 1 < len(pokedex) else pokedex[0]["Name"]
+            i = (i + 1) % len(pokedex)
+            # i = pokedex[i + 1]["Name"] if i + 1 < len(pokedex) else pokedex[0]["Name"]
             afficher_pokemon(i)
         except IndexError:
-            i = pokelist[0] #si erreur c'est que retour à 0
+            i = len(pokedex) -1 #si erreur c'est que retour à celui d'avant
+            # i = pokelist[0] #si erreur c'est que retour à 0
     elif move == 'backward':
         try:
-            i = pokedex[i - 1]["Name"] if i - 1 >= 0 else pokedex[len(pokedex) - 1]["Name"]
+            i = (i - 1) % len(pokedex)
+            # i = pokedex[i - 1]["Name"] if i - 1 >= 0 else pokedex[len(pokedex) - 1]["Name"]
             afficher_pokemon(i)
         except IndexError:
-            i = pokelist[len(pokedex) - 1] #si erreur c'est que retour à celui d'avant
+            i = 0
+            # i = pokelist[len(pokedex) - 1] #si erreur c'est que retour à celui d'avant
     create_buttons(i)
 
 def search_by_name():
