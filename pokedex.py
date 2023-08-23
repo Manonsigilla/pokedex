@@ -106,17 +106,18 @@ search_label.grid(row=0, column=0, columnspan=2)
 
 #Efface l'insert en cliquant dans le champ de saisie
 def temp_text(e):
-    search_label1.delete(0, "end")
-    search_label2.delete(0, "end")
+    search_label1.delete(0, "end") # Suppression du contenu actuel de la zone de saisie de recherche par nom
+    search_label2.delete(0, "end") # Suppression du contenu actuel de la zone de saisie de recherche par numéro
 
 search_label1 = tk.Entry(search_frame, text="Search by name", bg="white")
-search_label1.insert(0, "Search by name")
-search_label1.grid(row=1, column=0)
+search_label1.insert(0, "Search by name") # Insérer le texte par défaut dans la zone de saisie
+search_label1.grid(row=1, column=0) 
 
 search_label2 = tk.Entry(search_frame, text="Search by number", bg="white")
-search_label2.insert(0, "Search by number")
+search_label2.insert(0, "Search by number") # Insérer le texte par défaut dans la zone de saisie
 search_label2.grid(row=2, column=0)
 
+# Associer la fonction temp_text à l'événement FocusIn (suppression automatique du texte pour l'utilisateur) pour les deux zones de saisie
 search_label1.bind("<FocusIn>", temp_text)
 search_label2.bind("<FocusIn>", temp_text)
 
@@ -130,55 +131,55 @@ add_frame.grid(row=1, column=2, rowspan=3)
 add_label = tk.Label(add_frame, text="Add a Pokemon", bg="white", background="#330000", fg="#ffcccc", font="Garamond 20 bold")
 add_label.grid(row=0, column=0, columnspan=2)
 
-add_label_name = tk.Entry(add_frame, text="Enter the name", bg="white", fg="black")
-add_label_name.grid(row=1, column=0, padx=3, pady=5)
-add_label_name1 = tk.Label(add_frame, text="Enter the name", bg="#ffcccc", fg="#7a0000")
-add_label_name1.grid(row=1, column=1, pady=5)
+add_entry_name = tk.Entry(add_frame, text="Enter the name", bg="white", fg="black")
+add_entry_name.grid(row=1, column=0, padx=3, pady=5)
+add_label_name = tk.Label(add_frame, text="Enter the name", bg="#ffcccc", fg="#7a0000")
+add_label_name.grid(row=1, column=1, pady=5)
 
-add_label_number = tk.Entry(add_frame, text="Enter the number", bg="white", fg="black")
-add_label_number.grid(row=2, column=0, pady=5)
-add_label_number1 = tk.Label(add_frame, text="Enter the number", bg="#ffcccc", fg="#7a0000")
-add_label_number1.grid(row=2, column=1, pady=5)
+add_entry_number = tk.Entry(add_frame, text="Enter the number", bg="white", fg="black")
+add_entry_number.grid(row=2, column=0, pady=5)
+add_label_number = tk.Label(add_frame, text="Enter the number", bg="#ffcccc", fg="#7a0000")
+add_label_number.grid(row=2, column=1, pady=5)
 
-add_label_type = tk.Entry(add_frame, text="Enter the type", bg="white", fg="black")
-add_label_type.grid(row=3, column=0, pady=5)
-add_label_type1 = tk.Label(add_frame, text="Enter the type", bg="#ffcccc", fg="#7a0000")
-add_label_type1.grid(row=3, column=1, pady=5)
+add_entry_type = tk.Entry(add_frame, text="Enter the type", bg="white", fg="black")
+add_entry_type.grid(row=3, column=0, pady=5)
+add_label_type = tk.Label(add_frame, text="Enter the type", bg="#ffcccc", fg="#7a0000")
+add_label_type.grid(row=3, column=1, pady=5)
 
-add_label_hp = tk.Entry(add_frame, text="Enter the HP", bg="white", fg="black")
-add_label_hp.grid(row=4, column=0, pady=5)
-add_label_hp1 = tk.Label(add_frame, text="Enter the HP", bg="#ffcccc", fg="#7a0000")
-add_label_hp1.grid(row=4, column=1, pady=5)
+add_entry_hp = tk.Entry(add_frame, text="Enter the HP", bg="white", fg="black")
+add_entry_hp.grid(row=4, column=0, pady=5)
+add_label_hp = tk.Label(add_frame, text="Enter the HP", bg="#ffcccc", fg="#7a0000")
+add_label_hp.grid(row=4, column=1, pady=5)
 
-add_label_attack = tk.Entry(add_frame, text="Enter the Attack", bg="white", fg="black")
-add_label_attack.grid(row=5, column=0, pady=5)
-add_label_attack1 = tk.Label(add_frame, text="Enter the attack", bg="#ffcccc", fg="#7a0000")
-add_label_attack1.grid(row=5, column=1, pady=5)
+add_entry_attack = tk.Entry(add_frame, text="Enter the Attack", bg="white", fg="black")
+add_entry_attack.grid(row=5, column=0, pady=5)
+add_label_attack = tk.Label(add_frame, text="Enter the attack", bg="#ffcccc", fg="#7a0000")
+add_label_attack.grid(row=5, column=1, pady=5)
 
-add_label_defense = tk.Entry(add_frame, text="Enter the Defense", bg="white", fg="black")
-add_label_defense.grid(row=6, column=0, pady=5)
-add_label_defense1 = tk.Label(add_frame, text="Enter the defense", bg="#ffcccc", fg="#7a0000")
-add_label_defense1.grid(row=6, column=1, pady=5)
+add_entry_defense = tk.Entry(add_frame, text="Enter the Defense", bg="white", fg="black")
+add_entry_defense.grid(row=6, column=0, pady=5)
+add_label_defense = tk.Label(add_frame, text="Enter the defense", bg="#ffcccc", fg="#7a0000")
+add_label_defense.grid(row=6, column=1, pady=5)
 
-add_label_spattack = tk.Entry(add_frame, text="Enter the Sp. Attack", bg="white", fg="black")
-add_label_spattack.grid(row=7, column=0, pady=5)
-add_label_spattack1 = tk.Label(add_frame, text="Enter the special attack", bg="#ffcccc", fg="#7a0000")
-add_label_spattack1.grid(row=7, column=1, pady=5)
+add_entry_spattack = tk.Entry(add_frame, text="Enter the Sp. Attack", bg="white", fg="black")
+add_entry_spattack.grid(row=7, column=0, pady=5)
+add_label_spattack = tk.Label(add_frame, text="Enter the special attack", bg="#ffcccc", fg="#7a0000")
+add_label_spattack.grid(row=7, column=1, pady=5)
 
-add_label_spdefense = tk.Entry(add_frame, text="Enter the Sp. Defense", bg="white", fg="black")
-add_label_spdefense.grid(row=8, column=0, pady=5)
-add_label_spdefense1 = tk.Label(add_frame, text="Enter the sp. defense", bg="#ffcccc", fg="#7a0000")
-add_label_spdefense1.grid(row=8, column=1, pady=5)
+add_entry_spdefense = tk.Entry(add_frame, text="Enter the Sp. Defense", bg="white", fg="black")
+add_entry_spdefense.grid(row=8, column=0, pady=5)
+add_label_spdefense = tk.Label(add_frame, text="Enter the sp. defense", bg="#ffcccc", fg="#7a0000")
+add_label_spdefense.grid(row=8, column=1, pady=5)
 
-add_label_speed = tk.Entry(add_frame, text="Enter the Speed", bg="white", fg="black")
-add_label_speed.grid(row=9, column=0, pady=5)
-add_label_speed1 = tk.Label(add_frame, text="Enter the speed", bg="#ffcccc", fg="#7a0000")
-add_label_speed1.grid(row=9, column=1, pady=5)
+add_entry_speed = tk.Entry(add_frame, text="Enter the Speed", bg="white", fg="black")
+add_entry_speed.grid(row=9, column=0, pady=5)
+add_label_speed = tk.Label(add_frame, text="Enter the speed", bg="#ffcccc", fg="#7a0000")
+add_label_speed.grid(row=9, column=1, pady=5)
 
-add_label_total = tk.Entry(add_frame, text="Enter the Total", bg="white", fg="black")
-add_label_total.grid(row=10, column=0, pady=5)
-add_label_total1 = tk.Label(add_frame, text="Enter the total", bg="#ffcccc", fg="#7a0000")
-add_label_total1.grid(row=10, column=1, pady=5)
+add_entry_total = tk.Entry(add_frame, text="Enter the Total", bg="white", fg="black")
+add_entry_total.grid(row=10, column=0, pady=5)
+add_label_total = tk.Label(add_frame, text="Enter the total", bg="#ffcccc", fg="#7a0000")
+add_label_total.grid(row=10, column=1, pady=5)
 
 pokedex = [
     {
@@ -235,9 +236,9 @@ pokedex = [
 name_to_search = ""
 number_to_search = ""
 
-# texte des widgets entry
-name_to_search = add_label_name.get().lower()
-number_to_search = add_label_number.get().lower()
+# récupération des textes des widgets entry en minuscules
+name_to_search = add_entry_name.get().lower()
+number_to_search = add_entry_number.get().lower()
 
 def afficher_pokemon(i, move = None):
     print(i)
@@ -275,10 +276,6 @@ def afficher_pokemon(i, move = None):
     pokemon_image = Image.open(image)
     pokemon_image = pokemon_image.resize((150, 150))
     pokemon_image = ImageTk.PhotoImage(pokemon_image)
-
-    #afficher qu'une seule image à la fois :
-    # for widget in pokemon_image_frame.winfo_children():
-    #     widget.destroy()
 
     pokemon_image_label = tk.Label(pokemon_image_frame, image=pokemon_image, bg="white")
     pokemon_image_label.image = pokemon_image
@@ -327,7 +324,7 @@ def search_by_name():
             afficher_pokemon(i)
             return
         
-    messagebox.showinfo("Error", "The pokemon is not in the list! Add the pokemon to the list!")
+    messagebox.showwarning("Error", "The pokemon is not in the list! Add the pokemon to the list!")
 
     
 def search_by_number():
@@ -350,18 +347,18 @@ recherche_bouton2.grid(row=2, column=1, padx=5, pady=5)
 def add_pokemon():
     global pokedex
     new_pokemon = {
-        "Name": add_label_name.get(),
+        "Name": add_entry_name.get(),
         "Stats": {
-            'HP': int(add_label_hp.get()),
-            'Attack': int(add_label_attack.get()),
-            'Defense': int(add_label_defense.get()),
-            'Sp. Attack': int(add_label_spattack.get()),
-            'Sp. Defense': int(add_label_spdefense.get()),
-            'Speed': int(add_label_speed.get()),
-            'Total': int(add_label_total.get())
+            'HP': int(add_entry_hp.get()),
+            'Attack': int(add_entry_attack.get()),
+            'Defense': int(add_entry_defense.get()),
+            'Sp. Attack': int(add_entry_spattack.get()),
+            'Sp. Defense': int(add_entry_spdefense.get()),
+            'Speed': int(add_entry_speed.get()),
+            'Total': int(add_entry_total.get())
         },
-        "Type": [add_label_type.get()],
-        "National Number": add_label_number.get(),
+        "Type": [add_entry_type.get()],
+        "National Number": add_entry_number.get(),
         "Image": ['Images/placeholder.png', '#FFFFFF']
     }
 
@@ -369,16 +366,16 @@ def add_pokemon():
     pokedex.append(new_pokemon)
     messagebox.showinfo("Success", "The pokemon has been added!")
 
-    add_label_name.delete(0, "end")
-    add_label_number.delete(0, "end")
-    add_label_type.delete(0, "end")
-    add_label_hp.delete(0, "end")
-    add_label_attack.delete(0, "end")
-    add_label_defense.delete(0, "end")
-    add_label_spattack.delete(0, "end")
-    add_label_spdefense.delete(0, "end")
-    add_label_speed.delete(0, "end")
-    add_label_total.delete(0, "end")
+    add_entry_name.delete(0, "end")
+    add_entry_number.delete(0, "end")
+    add_entry_type.delete(0, "end")
+    add_entry_hp.delete(0, "end")
+    add_entry_attack.delete(0, "end")
+    add_entry_defense.delete(0, "end")
+    add_entry_spattack.delete(0, "end")
+    add_entry_spdefense.delete(0, "end")
+    add_entry_speed.delete(0, "end")
+    add_entry_total.delete(0, "end")
 
 add_bouton = tk.Button(add_frame, text = "Add the pokemon", font = "Garamond 14", command=add_pokemon, relief="raised", bg="#43B14B")
 add_bouton.grid(row=11, column=0, columnspan=2)
